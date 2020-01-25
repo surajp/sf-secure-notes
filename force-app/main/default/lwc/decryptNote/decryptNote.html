@@ -1,0 +1,10 @@
+<template>
+	<template if:false={isDecrypted}>
+		<lightning-button label="Decrypt" onclick={decrypt}></lightning-button>
+	</template>	
+	<template if:true={isDecrypted}>
+		<lightning-card title="Secure Note" icon-name="action:new_notebook">
+			<p class="slds-m-left_small">{decryptedNote}</p>
+		</lightning-card>
+	</template>	
+</template>
