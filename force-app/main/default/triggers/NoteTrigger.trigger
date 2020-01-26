@@ -1,3 +1,3 @@
-trigger NoteTrigger on cypto__Secure_Note__c (before insert) {
+trigger NoteTrigger on Secure_Note__c (before insert) {
 	new CryptoHandler().doEncrypt(Trigger.new);
 }

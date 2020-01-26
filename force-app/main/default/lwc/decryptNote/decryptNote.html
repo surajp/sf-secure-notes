@@ -1,7 +1,7 @@
 <template>
 	<lightning-card title="Secure Note" icon-name="action:new_notebook">
 	<div class="slds-m-left_small">
-		<lightning-record-form fields={allFields} mode="readonly" record-id={recordId} object-api-name="cypto__Secure_Note__c">
+		<lightning-record-form fields={allFields} mode="readonly" record-id={recordId} object-api-name={objectName}>
 		</lightning-record-form>
 		<div class="slds-text-title slds-m-top_x-small slds-m-left_xx-small slds-m-bottom_xx-small">Body</div>
 		<template if:false={isDecrypted}>

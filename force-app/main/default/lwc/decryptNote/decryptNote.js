@@ -13,6 +13,7 @@ export default class DecryptNote extends LightningElement {
 	@track _fields = ['Name','CreatedDate','LastModifiedDate'];
 	@track _nonNullFields=[];
 	@track customFieldsArray=[];
+	@track objectName = SECURE_NOTE;
 
 	/***
 		concat static fields, user supplied fields and relationship fields that are not blank
@@ -32,7 +33,7 @@ export default class DecryptNote extends LightningElement {
 	@wire(getObjectInfo,{objectApiName:SECURE_NOTE})
 	getNoteObjectInfo({error,data}){
 		if(!error && data){
-			this.customFieldsArray = Object.values(data.fields).filter(field=>(field.apiName.endsWith('__c') && field.reference===true)).map(field=>'cypto__Secure_Note__c.'+field.apiName);
+			this.customFieldsArray = Object.values(data.fields).filter(field=>(field.apiName.endsWith('__c') && field.reference===true)).map(field=>SECURE_NOTE+field.apiName);
 		}else if(error)
 			this.dispatchEvent(new ShowToastEvent({title:'An error occurred',message:err.body.message,variant:'error'}));
 	}
