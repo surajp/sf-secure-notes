@@ -27,4 +27,17 @@ public class TestCryptoHandler {
         }
         system.assert(hasException);
     }
+
+		public void testPreventOwnerChange(){
+        Secure_Note__c nt = new Secure_Note__c(Name='New Note',Body__c='Hello, World');
+        insert nt;
+				boolean dmlfailed = false;
+				try{
+					nt.OwnerId=[Select Id from User where Profile.Name='System Administrator' and IsActive=true limit 1].Id;	
+					update nt;
+				}catch(DMLException ex){
+					dmlfailed = true;
+				}
+				system.assert(dmlfailed);
+		}
 }
